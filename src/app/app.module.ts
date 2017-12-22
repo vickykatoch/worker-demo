@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { WorkerProxyModule } from './worker-proxy';
 
 import { AppComponent } from './app.component';
 
@@ -10,7 +10,8 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    WorkerProxyModule
   ],
   providers: [],
   bootstrap: [AppComponent]
