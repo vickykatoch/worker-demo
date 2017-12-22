@@ -8,7 +8,7 @@ export abstract class AbstractWorkerProxy {
   protected _isReady = false;
   protected messageNotifier = new Subject<WorkerMessage>();
   protected workerReadyNotifier = new BehaviorSubject<boolean>(false);
-  protected _dispatcher: IMessageBroker;
+  protected _dispatcher: any;
   public workerReady$ = this.workerReadyNotifier.asObservable();
   public messages$ = this.messageNotifier.asObservable();
   protected workerInfo : WorkerInfo

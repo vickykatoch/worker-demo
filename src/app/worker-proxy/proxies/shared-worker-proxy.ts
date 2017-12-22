@@ -13,7 +13,7 @@ export class SharedWorkerProxy extends AbstractWorkerProxy {
     }
 
     dispose(): void {
-        if (this.worker) {
+        if (this._dispatcher) {
             // TODO: Send Message to disonnect before
             // this.worker.removeEventListener('message',this.processWorkerMessage);
             // this.worker.removeEventListener('error',this.processWorkerError);

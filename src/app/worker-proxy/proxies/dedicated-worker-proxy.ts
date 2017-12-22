@@ -1,5 +1,5 @@
 import { AbstractWorkerProxy } from "./abstract-worker-proxy";
-import { WorkerMessage, WorkerMessageTypes, WorkerMessageBuilder } from "../../config-models/index";
+import { WorkerMessage, WorkerMessageTypes, WorkerMessageBuilder, IMessageBroker } from "../../config-models/index";
 
 
 
