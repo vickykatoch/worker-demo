@@ -1,15 +1,17 @@
 
-export class WorkerMessage {
+export interface WorkerMessage {
     type : string;
-    constructor(public payload?: any) {
-
-    }
+    // sender?: string;
+    ts : number;
+    payload?: any
 }
 
 export class WorkerMessageBuilder {
-    static createMessage(type: string,payload?: any) {
-        const message = new WorkerMessage(payload);
-        message.type = type;
-        return message;
+    static build(type: string,payload?: any) {
+      return {
+        type,
+        ts : Date.now(),
+        payload
+      };
     }
 }

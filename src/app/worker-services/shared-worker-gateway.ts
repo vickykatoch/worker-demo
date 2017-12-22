@@ -1,14 +1,18 @@
-// importScripts('temp.js');
-debugger;
-var connnections = 0;
-console.log(self);
+import { MessageBroker } from "../socket-services";
+import { WorkerMessageBuilder, WorkerMessageTypes } from "../config-models";
+
+
+
+let connnections = 0;
+console.info('Shared worker has been started');
+
 self.addEventListener("connect", (evt: MessageEvent) => {
-  var port: MessagePort = evt.ports[0];
+  const port: MessagePort = evt.ports[0];
+  MessageBroker.instance.onMessage(WorkerMessageBuilder.build(WorkerMessageTypes.CONNECT_WORKER),port);
   connnections++;
   port.addEventListener("message", (e: MessageEvent) => {
-    console.log(e.data);
+    MessageBroker.instance.onMessage(e.data, port);
   }, false);
   port.start();
-  port.postMessage({ type: 'WORKER_CONNECTED' });
   console.log(`Connections Count : ${connnections}`);
 }, false);

@@ -34,7 +34,7 @@ const COMMON = {
             main: true,
             extensions: ['.js', '.json']
         }),
-        // uglify()
+        uglify()
     ]
 };
 
