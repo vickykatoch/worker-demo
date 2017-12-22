@@ -28,5 +28,12 @@ export class WorkerProxyService {
   messages(workerName: string): Observable<WorkerMessage> {
     return this.workerMap.get(workerName).messages$;
   }
-
+  sendMessage(workerInfo: WorkerInfo, workerMessage: WorkerMessage) {
+    if(this.workerMap.has(workerInfo.name)) {
+      const proxy = this.workerMap.get((workerInfo.name));
+      if(proxy.isReady) {
+        proxy.send(workerMessage);
+      }
+    }
+  }
 }
