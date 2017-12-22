@@ -7,17 +7,15 @@ export class DedicatedWorkerProxy extends AbstractWorkerProxy {
     private worker: Worker;
 
     connect(): void {
-        this.worker = new Worker(this.workerInfo.file);
-        this.worker.addEventListener('message', this.processWorkerMessage.bind(this));
-        this.worker.addEventListener('error', this.processWorkerError.bind(this));
+        this._dispatcher = new Worker(this.workerInfo.file); 
+        this.wireBrokerEvents();
+        
         setTimeout(() => {
-            this.worker.postMessage(
+            this.send(
                 WorkerMessageBuilder.createMessage(WorkerMessageTypes.CONNECT_WORKER, this.workerInfo));
         }, 100);
     }
-    send(): void {
-        throw new Error("Method not implemented.");
-    }
+    
     dispose(): void {
         if (this.worker) {
             // TODO: Send Message to disonnect before 
@@ -27,10 +25,10 @@ export class DedicatedWorkerProxy extends AbstractWorkerProxy {
         }
     }
 
-    private processWorkerMessage(evt: MessageEvent) {
-        debugger;
+    protected processWorkerMessage(evt: MessageEvent) {
         const message = evt.data;
-        if (message instanceof WorkerMessage) {
+        if (message && message.type) {
+            console.info(evt);
             switch (message.type) {
                 case WorkerMessageTypes.CONNECT_WORKER_SUCCESS:
                     this.workerConnNotifier.next(true);
@@ -41,8 +39,7 @@ export class DedicatedWorkerProxy extends AbstractWorkerProxy {
             console.log('Unknown Message Received from worker ');
         }
     }
-    private processWorkerError(evt: ErrorEvent) {
-        debugger;
+    protected processWorkerError(evt: ErrorEvent) {
         console.error(evt);
     }
 }

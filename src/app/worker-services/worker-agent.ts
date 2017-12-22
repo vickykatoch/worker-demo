@@ -1,4 +1,4 @@
-import { WorkerMessage } from "../config-models/index";
+import { WorkerMessage, WorkerMessageTypes, WorkerMessageBuilder } from "../config-models/index";
 
 
 
@@ -21,8 +21,18 @@ export class WorkerAgent {
     setContext(context: any) {
         this.context = context;
     }
-    
-    onMessage(message: WorkerMessage) {
 
+    onMessage(message: WorkerMessage) {
+        switch(message.type) {
+            case WorkerMessageTypes.CONNECT_WORKER:
+                this.context['name'] = message.payload.name;
+                this.dispatchMessage(WorkerMessageBuilder.createMessage(WorkerMessageTypes.CONNECT_WORKER_SUCCESS));
+                break;
+            default:
+            // TODO: Send to SocketService
+        }
+    }
+    dispatchMessage(message: WorkerMessage) {
+        this.context.postMessage(message);
     }
 }

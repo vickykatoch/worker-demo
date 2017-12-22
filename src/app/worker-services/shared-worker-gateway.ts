@@ -1,5 +1,5 @@
 // importScripts('temp.js');
-
+debugger;
 var connnections = 0;
 console.log(self);
 self.addEventListener("connect", (evt: MessageEvent) => {
