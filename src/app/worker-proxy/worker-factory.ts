@@ -1,4 +1,4 @@
-import { WorkerInfo } from "../config-models/index";
+import { WorkerConfig, WorkerTypes } from "../config-models/index";
 import * as proxies from './proxies';
 
 export class WorkerFactory {
@@ -10,14 +10,14 @@ export class WorkerFactory {
         }
         WorkerFactory._instance = this;
     }
-    getWorker(workerInfo: WorkerInfo): proxies.AbstractWorkerProxy {
-        switch (workerInfo.type) {
-            case 0:
-                return new proxies.LocalWorkerProxy(workerInfo);
-            case 1:
-                return new proxies.DedicatedWorkerProxy(workerInfo);
-            case 2 :
-                return new proxies.SharedWorkerProxy(workerInfo);
+    getWorker(workerConfig: WorkerConfig): proxies.AbstractWorkerProxy {
+        switch (workerConfig.workerInfo.type) {
+            case WorkerTypes.LOCAL:
+                return new proxies.LocalWorkerProxy(workerConfig);
+            case WorkerTypes.DEDICATED:
+                return new proxies.DedicatedWorkerProxy(workerConfig);
+            case WorkerTypes.SHARED :
+                return new proxies.SharedWorkerProxy(workerConfig);
             default:
                 throw new Error('Unknown worker type');
         }
