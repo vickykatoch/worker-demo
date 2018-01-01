@@ -71,6 +71,5 @@ export class MessageBroker {
     }
     this.postMessage(WorkerMessageBuilder.build(WorkerMessageTypes.SET_WORKER_CONFIG_FAILED, 'InComplete worker configuration'), context);
   }
-
   //#endregion
 }

@@ -3,11 +3,13 @@ import { NgModule } from '@angular/core';
 import { WorkerProxyModule } from './worker-proxy';
 
 import { AppComponent } from './app.component';
+import { SocketDemoComponent } from './socket-demo/socket-demo.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SocketDemoComponent
   ],
   imports: [
     BrowserModule,
