@@ -1,5 +1,6 @@
 import { Subject } from "rxjs/Subject";
 import { WorkerMessage } from "../../config-models/index";
+import { SocketIOController } from "./socketio-controller";
 
 
 
@@ -22,9 +23,10 @@ export class MessageBrokerProxy {
 
     private notifier = new Subject<WorkerMessage>();
     inBox$ = this.notifier.asObservable();
-    
+
     private outboxNotifier = new Subject<WorkerMessage>();
     ouBox$ = this.outboxNotifier.asObservable();
+    controller = new SocketIOController(this);
 
     onMessage(message: WorkerMessage) {
         this.notifier.next(message);
