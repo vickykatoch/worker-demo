@@ -1,0 +1,50 @@
+.num-spinner {
+    border: 1px solid #000; 
+}
+
+.flex-fill {
+    flex-grow: 1;
+}
+
+.error {
+    color: red;
+}
+
+input {
+    border: none;
+    text-align: right;
+    padding-right: 10px;
+}
+
+.updown {
+    position: relative;
+    border-left: 1px solid #000;
+    width: 24px;
+    .up {
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-left: 11px solid transparent;
+        border-right: 11px solid transparent;
+        border-bottom: 11px solid #000;
+        opacity: 0.4;
+        cursor: pointer;
+    }
+    .up:hover {
+        opacity: 1;
+    }
+    .down {
+        position: absolute;
+        width: 0;
+        height: 0;
+        top: 15px;
+        border-left: 11px solid transparent;
+        border-right: 11px solid transparent;
+        border-top: 11px solid #000;
+        opacity: 0.4;
+        cursor: pointer;
+    }
+    .down:hover {
+        opacity: 1;
+    }
+}

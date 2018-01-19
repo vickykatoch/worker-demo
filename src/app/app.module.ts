@@ -4,6 +4,8 @@ import { WorkerProxyModule } from './worker-proxy';
 
 import { AppComponent } from './app.component';
 import { SocketDemoComponent } from './socket-demo/socket-demo.component';
+import { NumberSpinnerModule } from './number-spinner/index';
+
 
 
 @NgModule({
@@ -13,7 +15,8 @@ import { SocketDemoComponent } from './socket-demo/socket-demo.component';
   ],
   imports: [
     BrowserModule,
-    WorkerProxyModule
+    WorkerProxyModule,
+    NumberSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
