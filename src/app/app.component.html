@@ -1,8 +1,34 @@
-<app-socket-demo></app-socket-demo>
-<div class="container">
-    <div class="row">
-        <div class="col-6">
-            <number-spinner style="width:200px"></number-spinner>
-        </div>
+<!-- <app-socket-demo></app-socket-demo> -->
+<!-- <div style="margin-left:50px; width:200px">
+    <number-spinner [(ngModel)]="price" [disabled]="false" [step]="10.25" [minValue]="1" [decimalPlaces]="3" (valueChanged)="onValueChanged($event)"
+        [maxValue]="1000">
+        <i class="fa fa-exclamation-circle error" aria-hidden="true"></i>
+    </number-spinner>
+</div> -->
+<form [formGroup]="reactiveForm" class="d-flex flex-column" style="width:400px;margin:auto;padding-top:20px">
+    <div class="d-flex">
+        <div class="label">Name</div>
+        <input type="text" formControlName="name" class="flex-fill">
     </div>
+    <div class="d-flex">
+        <div class="label">Age</div>
+        <number-spinner formControlName="age" [disabled]="false" [step]="1" [minValue]="1" [decimalPlaces]="0" [maxValue]="200" class="flex-fill">
+            <!-- <i class="fa fa-exclamation-circle error" aria-hidden="true"></i> -->
+        </number-spinner>
+    </div>
+    <div class="d-flex">
+        <div class="label">Salary</div>
+        <number-spinner formControlName="salary" [disabled]="false" [step]="150" [minValue]="100" [decimalPlaces]="0" (valueChanged)="onValueChanged($event)"
+            [maxValue]="200000" class="flex-fill">
+            <!-- <i class="fa fa-exclamation-circle error" aria-hidden="true"></i> -->
+        </number-spinner>
+    </div>
+
+</form>
+<div class="d-flex">
+    <div class="label">Salary</div>
+    <input type="text" [ngModel]="formatValue | numFormat" (ngModelBlur)="formatValue=$event">
+</div>
+<div style="margin-top:20px">
+    {{reactiveForm.value | json}}
 </div>

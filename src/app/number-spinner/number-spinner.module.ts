@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NumberSpinnerComponent } from './components/number-spinner.component';
 import { NumberOnlyDirective } from './directives/number-only.directive';
 import { FormsModule } from '@angular/forms';
+import { NumFormatPipe } from './num-format.pipe';
 
 @NgModule({
   imports: [
@@ -11,11 +12,13 @@ import { FormsModule } from '@angular/forms';
   ],
   declarations: [
     NumberSpinnerComponent, 
-    NumberOnlyDirective
+    NumberOnlyDirective,
+    NumFormatPipe
   ],
   exports : [
     NumberSpinnerComponent, 
-    NumberOnlyDirective
+    NumberOnlyDirective,
+    NumFormatPipe
   ]
 })
 export class NumberSpinnerModule { }

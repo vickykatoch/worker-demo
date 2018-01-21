@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { WorkerInfo, WorkerConfig, WorkerTypes } from './config-models';
 import { WorkerProxyService } from './worker-proxy';
 import { LogLevel } from './fit-logger-core/index';
+import { FormGroup,FormBuilder, FormControl, Validators } from '@angular/forms';
+
 
 
 @Component({
@@ -11,12 +13,25 @@ import { LogLevel } from './fit-logger-core/index';
 })
 export class AppComponent {
   title = 'app';
+  price : number = 104.4567;
+  formattedPrice = 0;
+  public reactiveForm: FormGroup;
+  formatValue = 10;
+
   private workersInfo : WorkerInfo[] = [
 
   ];
 
-  constructor(private workerProxyService: WorkerProxyService) {
-    workerProxyService.initialize(this.getWorkersConfig());
+  onValueChanged(value: number) {
+    this.formattedPrice= value;
+  }
+  constructor(private workerProxyService: WorkerProxyService, fb: FormBuilder) {
+    // workerProxyService.initialize(this.getWorkersConfig());
+    this.reactiveForm = fb.group({
+      name : new FormControl('Balwinder Katoch',Validators.required),
+      age : new FormControl(43, Validators.required),
+      salary : new FormControl(400)
+    });
   }
 
   getWorkersConfig() : WorkerConfig[] {

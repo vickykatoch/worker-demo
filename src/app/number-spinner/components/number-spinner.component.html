@@ -1,9 +1,11 @@
-<div class="d-flex num-spinner">
-  <input type="text" class="flex-fill" numberOnly [(ngModel)]="displayValue">
+<div class="d-flex num-spinner" [class.disabled]="disabled">
+  <input type="text" class="flex-fill" numberOnly [(ngModel)]="displayValue" #input>
   <span>
-    <i class="fa fa-exclamation-circle error" aria-hidden="true"></i>
+    <ng-content>
+
+    </ng-content>
   </span>
-  <div class="d-flex flex-column updown">
+  <div class="d-flex flex-column updown" [class.disabled]="disabled">
     <span class="up" (click)="onUp()"></span>
     <span class="down" (click)="onDown()"></span>
   </div>

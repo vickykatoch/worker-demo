@@ -5,6 +5,7 @@ import { WorkerProxyModule } from './worker-proxy';
 import { AppComponent } from './app.component';
 import { SocketDemoComponent } from './socket-demo/socket-demo.component';
 import { NumberSpinnerModule } from './number-spinner/index';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -16,6 +17,8 @@ import { NumberSpinnerModule } from './number-spinner/index';
   imports: [
     BrowserModule,
     WorkerProxyModule,
+    FormsModule,
+    ReactiveFormsModule,
     NumberSpinnerModule
   ],
   providers: [],

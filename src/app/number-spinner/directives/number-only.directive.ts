@@ -26,6 +26,7 @@ export class NumberOnlyDirective {
     for(let i = 0;i<pastedData.length;i++) {
       if(!this.acceptableCharCodes.has(pastedData.charCodeAt(i))) {
         evt.returnValue = false;
+        evt.preventDefault();
         break;
       }
     }
