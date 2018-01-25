@@ -6,13 +6,20 @@ import { AppComponent } from './app.component';
 import { SocketDemoComponent } from './socket-demo/socket-demo.component';
 import { NumberSpinnerModule } from './number-spinner/index';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DragTestComponent } from './drag-test/drag-test.component';
+import { DragService } from './drag-test/directives/drag-service';
+import { DropTargetDirective } from './drag-test/directives/drop-target.directive';
+import { DraggableDirective } from './drag-test/directives/draggable';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    SocketDemoComponent
+    SocketDemoComponent,
+    DragTestComponent,
+    DropTargetDirective,
+    DraggableDirective
   ],
   imports: [
     BrowserModule,
@@ -21,7 +28,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule,
     NumberSpinnerModule
   ],
-  providers: [],
+  providers: [
+    DragService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

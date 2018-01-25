@@ -1,0 +1,21 @@
+<div class="d-flex justify-content-center flex-column">
+
+  <table class="table table-sm table-hover" style="width:500px">
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+    </tr>
+    <tbody>
+      <tr *ngFor="let emp of emps" [myDraggable]="{ data: emp }" class="draggable">
+        <td>{{emp.name}}</td>
+        <td>{{emp.age}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="height: 100px; width: 400px; border: 1px solid #000" myDropTarget (myDrop)="onDrop($event)" class="drop-target">
+    <div>
+      <span>{{emp?.name}}</span>
+      <span>{{emp?.age}}</span>
+    </div>
+  </div>
+</div>

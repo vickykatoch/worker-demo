@@ -24,6 +24,18 @@
         </number-spinner>
     </div>
 
+    <div class="d-flex">
+        <div class="label">Price</div>
+        <number-spinner formControlName="age" [disabled]="false" 
+        [step]=".03125" [minValue]="1.0" 
+        [decimalPlaces]="4" 
+        [maxValue]="200"
+        [displayFormat] = "n"
+         class="flex-fill">
+            <!-- <i class="fa fa-exclamation-circle error" aria-hidden="true"></i> -->
+        </number-spinner>
+    </div>
+
 </form>
 <div class="d-flex">
     <div class="label">Salary</div>
@@ -32,3 +44,5 @@
 <div style="margin-top:20px">
     {{reactiveForm.value | json}}
 </div>
+
+<app-drag-test></app-drag-test>

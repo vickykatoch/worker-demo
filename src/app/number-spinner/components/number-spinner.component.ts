@@ -9,11 +9,8 @@ import { fromEvent } from 'rxjs/observable/fromEvent'
 import { merge } from 'rxjs/observable/merge';
 import { Subscription } from 'rxjs/Subscription';
 
+const DEFAULT_DISPLAY_FORMAT = 'decimel';
 
-
-
-const DEFAULT_MIN = Number.NEGATIVE_INFINITY;
-const DEFAULT_MAX = Number.POSITIVE_INFINITY;
 
 @Component({
   selector: 'number-spinner',
@@ -28,6 +25,7 @@ const DEFAULT_MAX = Number.POSITIVE_INFINITY;
   ],
 })
 export class NumberSpinnerComponent implements ControlValueAccessor {
+  //#region Fields
   @Input() decimalPlaces = 0;
   @Input() step = 1;
   @Input() minValue = Number.NEGATIVE_INFINITY;
@@ -35,17 +33,19 @@ export class NumberSpinnerComponent implements ControlValueAccessor {
   @ViewChild('input') inputElem: ElementRef;
   @Input() disabled = false;
   @Output() valueChanged = new EventEmitter<number>();
+  @Input() displayFormat : string = DEFAULT_DISPLAY_FORMAT;
 
   private innerValue: number;
   displayValue = '';
   propagateChange: any = () => { };
   validateFn:any = () => {};
   private eventSubscription: Subscription;
+  //#endregion
 
-
+  //#region ctor
   constructor() {
   }
-
+  //#endregion
 
   //#region ControlValueAccessor
   /**
@@ -134,8 +134,15 @@ export class NumberSpinnerComponent implements ControlValueAccessor {
     this.valueChanged.next(this.innerValue);
   }
   setFormattedValue() {
-    this.displayValue = this.innerValue.toFixed(this.decimalPlaces);
-    this.innerValue = Number(this.displayValue);
+    const value = this.innerValue.toFixed(this.decimalPlaces);
+    this.displayValue = this.displayFormat === DEFAULT_DISPLAY_FORMAT ? value : this.getFormattedValueTemp(this.innerValue);
+    this.innerValue = Number(value);
+  }
+  getFormattedValueTemp(value: number) : string {
+    const intPart = Math.floor(value);
+    let decPart = ((value - intPart) * .32).toFixed(this.decimalPlaces);
+    decPart = decPart.substr(decPart.indexOf('.')+1);
+    return `${intPart}-${decPart}`;
   }
   //#endregion
 }
